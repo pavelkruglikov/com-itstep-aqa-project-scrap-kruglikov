@@ -1,0 +1,1 @@
+# com-itstep-aqa-project-scrap-kruglikov
