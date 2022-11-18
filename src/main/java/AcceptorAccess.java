@@ -1,8 +1,7 @@
 import java.sql.*;
 import java.util.Scanner;
-import java.sql.Date;
 
-public class AdminAccess {
+public class AcceptorAccess {
 
     boolean endFlag = true;
     Scanner scanner = new Scanner(System.in);
@@ -13,10 +12,7 @@ public class AdminAccess {
     public void showMenu() {
         System.out.println("1. Добавить приемку");
         System.out.println("2. Посмотреть список приемок");
-        System.out.println("3. Изменить приемку");
-        System.out.println("4. Удалить приемку");
-        System.out.println("5. Добавить пользователя");
-        System.out.println("6. Выход");
+        System.out.println("3. Выход");
     }
 
     public int getMenuPointer() {
@@ -37,14 +33,6 @@ public class AdminAccess {
                 break;
             }
             case 3: {
-                changeAcceptance();
-                break;
-            }
-            case 5: {
-                addUser();
-                       break;
-            }
-            case 6: {
                 endFlag = false;
             }
             default:
@@ -67,41 +55,6 @@ public class AdminAccess {
         System.out.println();
     }
 
-    public void changeAcceptance() throws SQLException {
-        String sql = "update acceptanceScrap set supplier = ?, gross_weight = ?," +
-                "container_weight = ?,net_weight = ?, price_per_kg = ?, total_payment = ?, " +
-                "acceptor =? ,acceptance_date = ? where id = ?;";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        System.out.println("Введите ID изменяемой приемки: ");
-        int acceptanceID = scanner.nextInt();
-        preparedStatement.setInt(9, acceptanceID);
-        System.out.println("Введите поставщика: ");
-        scanner.nextLine();
-        String supplier = scanner.nextLine();
-        preparedStatement.setString(1, supplier);
-        System.out.println("Введите общий вес: ");
-        Double grossWeight = scanner.nextDouble();
-        preparedStatement.setDouble(2, grossWeight);
-        System.out.println("Введите вес тары: ");
-        Double container = scanner.nextDouble();
-        preparedStatement.setDouble(3, container);
-        Double netWeight = grossWeight - container;
-        preparedStatement.setDouble(4, netWeight);
-        System.out.println("Введите цену за кг: ");
-        Double pricePerKG = scanner.nextDouble();
-        preparedStatement.setDouble(5, pricePerKG);
-        Double totalPayment = netWeight * pricePerKG;
-        preparedStatement.setDouble(6, totalPayment);
-        System.out.println("Введите приемщика: ");
-        scanner.nextLine();
-        String acceptor = scanner.nextLine();
-        preparedStatement.setString(7, acceptor);
-        System.out.println("Введите дату ГГГГ-ММ-ЧЧ: ");
-        String date = scanner.nextLine();
-        preparedStatement.setString(8, date);
-        scanner.nextLine();
-        preparedStatement.executeUpdate();
-    }
 
 
     public void addAcceptance() throws SQLException {
@@ -135,23 +88,5 @@ public class AdminAccess {
         preparedStatement.executeUpdate();
     }
 
-    public void addUser() throws SQLException {
-        String sql = "insert into \"user_list\" (user_name, user_password, access_type) values (?,?,?);";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        System.out.println("Введите имя нового пользователя: ");
-        scanner.nextLine();
-        String userName = scanner.nextLine();
-        preparedStatement.setString(1, userName);
-        System.out.println("Введите пароль нового пользователя: ");
-        String userPassword = scanner.nextLine();
-        preparedStatement.setString(2, userPassword);
-        System.out.println("Введите тип доступа: ");
-        int accessType = scanner.nextInt();
-        preparedStatement.setDouble(3, accessType);
-        preparedStatement.executeUpdate();
-    }
 
 }
-
-
-
