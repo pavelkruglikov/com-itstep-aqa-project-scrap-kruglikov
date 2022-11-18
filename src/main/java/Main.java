@@ -16,18 +16,24 @@ public class Main {
         verification.getAccessType();
 
         switch (verification.accessType) {
-            case 1: {
+            case 1 -> {
+                System.out.println("Выполнен вход как администратор");
+                System.out.println();
                 AdminAccess adminAccess = new AdminAccess();
                 do {
                     adminAccess.controller();
                 } while (adminAccess.endFlag);
+                break;
 
             }
-            case 2: {
+            case 2 -> {
+                System.out.println("Выполнен вход как приемщик");
+                System.out.println();
                 AcceptorAccess acceptorAccess = new AcceptorAccess();
-                do{
+                do {
                     acceptorAccess.controller();
-                }while (acceptorAccess.endFlag);
+                } while (acceptorAccess.endFlag);
+                break;
             }
         }
 

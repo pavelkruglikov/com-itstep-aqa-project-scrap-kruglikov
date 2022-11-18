@@ -16,7 +16,7 @@ public class AcceptorAccess {
     }
 
     public int getMenuPointer() {
-        System.out.println("Введите команду: ");
+        System.out.println("\nВведите команду: ");
         return scanner.nextInt();
     }
 
@@ -34,6 +34,7 @@ public class AcceptorAccess {
             }
             case 3: {
                 endFlag = false;
+                System.exit(0);
             }
             default:
                 System.err.println("Неправильная команда");
@@ -54,7 +55,6 @@ public class AcceptorAccess {
         }
         System.out.println();
     }
-
 
 
     public void addAcceptance() throws SQLException {

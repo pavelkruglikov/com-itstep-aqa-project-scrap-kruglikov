@@ -36,9 +36,13 @@ public class LoginAndPasswordVerification {
                 break;
             }
         }
+        if (!accessLoginVerificationFlag){
+            System.out.print("Некорректный логин. ");
+        }
 
 
     }
+
     public void passwordVerification() throws SQLException {
         getPassword();
         PreparedStatement preparedStatement = connection.prepareStatement(SQL_PASSWORD_VERIFICATION);
@@ -49,6 +53,9 @@ public class LoginAndPasswordVerification {
                 accessPasswordVerificationFlag = true;
                 break;
             }
+        }
+        if (!accessPasswordVerificationFlag){
+            System.out.print("Некорректный пароль. ");
         }
     }
 
@@ -63,7 +70,6 @@ public class LoginAndPasswordVerification {
             }
         }
     }
-
 
 
 }

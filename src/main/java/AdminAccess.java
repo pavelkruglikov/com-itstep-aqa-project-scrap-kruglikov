@@ -20,7 +20,7 @@ public class AdminAccess {
     }
 
     public int getMenuPointer() {
-        System.out.println("Введите команду: ");
+        System.out.println("\nВведите команду: ");
         return scanner.nextInt();
     }
 
@@ -42,10 +42,11 @@ public class AdminAccess {
             }
             case 5: {
                 addUser();
-                       break;
+                break;
             }
             case 6: {
                 endFlag = false;
+                System.exit(0);
             }
             default:
                 System.err.println("Неправильная команда");
@@ -68,10 +69,10 @@ public class AdminAccess {
     }
 
     public void changeAcceptance() throws SQLException {
-        String sql = "update acceptanceScrap set supplier = ?, gross_weight = ?," +
+        String SQL = "update \"acceptanceScrap\" set supplier = ?, gross_weight = ?," +
                 "container_weight = ?,net_weight = ?, price_per_kg = ?, total_payment = ?, " +
-                "acceptor =? ,acceptance_date = ? where id = ?;";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                "acceptor =? ,acceptance_date = ? where acceptance_id = ?;";
+        PreparedStatement preparedStatement = connection.prepareStatement(SQL);
         System.out.println("Введите ID изменяемой приемки: ");
         int acceptanceID = scanner.nextInt();
         preparedStatement.setInt(9, acceptanceID);
@@ -99,7 +100,6 @@ public class AdminAccess {
         System.out.println("Введите дату ГГГГ-ММ-ЧЧ: ");
         String date = scanner.nextLine();
         preparedStatement.setString(8, date);
-        scanner.nextLine();
         preparedStatement.executeUpdate();
     }
 
