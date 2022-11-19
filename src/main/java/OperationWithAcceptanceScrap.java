@@ -1,59 +1,10 @@
 import java.sql.*;
 import java.util.Scanner;
-import java.sql.Date;
 
-public class AdminAccess {
-
-    boolean endFlag = true;
+public class OperationWithAcceptanceScrap {
     Scanner scanner = new Scanner(System.in);
     ConnectionToDB connectionToDB = new ConnectionToDB();
     Connection connection = connectionToDB.connection;
-
-
-    public void showMenu() {
-        System.out.println("1. Добавить приемку");
-        System.out.println("2. Посмотреть список приемок");
-        System.out.println("3. Изменить приемку");
-        System.out.println("4. Удалить приемку");
-        System.out.println("5. Добавить пользователя");
-        System.out.println("6. Выход");
-    }
-
-    public int getMenuPointer() {
-        System.out.println("\nВведите команду: ");
-        return scanner.nextInt();
-    }
-
-    public void controller() throws SQLException {
-        showMenu();
-        int command = getMenuPointer();
-        switch (command) {
-            case 1: {
-                addAcceptance();
-                break;
-            }
-            case 2: {
-                showListOfAcceptations();
-                break;
-            }
-            case 3: {
-                changeAcceptance();
-                break;
-            }
-            case 5: {
-                addUser();
-                break;
-            }
-            case 6: {
-                endFlag = false;
-                System.exit(0);
-            }
-            default:
-                System.err.println("Неправильная команда");
-                break;
-
-        }
-    }
 
     public void showListOfAcceptations() throws SQLException {
         Statement statement = connection.createStatement();
@@ -109,7 +60,6 @@ public class AdminAccess {
                 "container_weight,net_weight, price_per_kg, total_payment, acceptor, acceptance_date) values (?,?,?,?,?,?,?,?);";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         System.out.println("Введите поставщика: ");
-        scanner.nextLine();
         String supplier = scanner.nextLine();
         preparedStatement.setString(1, supplier);
         System.out.println("Введите общий вес: ");
@@ -134,24 +84,15 @@ public class AdminAccess {
         preparedStatement.setString(8, date);
         preparedStatement.executeUpdate();
     }
-
-    public void addUser() throws SQLException {
-        String sql = "insert into \"user_list\" (user_name, user_password, access_type) values (?,?,?);";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        System.out.println("Введите имя нового пользователя: ");
-        scanner.nextLine();
-        String userName = scanner.nextLine();
-        preparedStatement.setString(1, userName);
-        System.out.println("Введите пароль нового пользователя: ");
-        String userPassword = scanner.nextLine();
-        preparedStatement.setString(2, userPassword);
-        System.out.println("Введите тип доступа: ");
-        int accessType = scanner.nextInt();
-        preparedStatement.setDouble(3, accessType);
+    public void deleteAcceptance() throws SQLException {
+        String SQL = "delete from \"acceptanceScrap\" where acceptance_id = ?;";
+        PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+        System.out.println("Введите ID изменяемой приемки: ");
+        int acceptanceID = scanner.nextInt();
+        preparedStatement.setInt(1, acceptanceID);
         preparedStatement.executeUpdate();
     }
 
+
+
 }
-
-
-
