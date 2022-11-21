@@ -7,7 +7,7 @@ public class OperationWithUserList {
     Connection connection = connectionToDB.connection;
 
     public void addUser() throws SQLException {
-        String sql = "insert into \"user_list\" (user_name, user_password, access_type) values (?,?,?);";
+        String sql = "insert into user_list (user_name, user_password, access_type) values (?,?,?);";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         System.out.println("Введите имя нового пользователя: ");
         scanner.nextLine();
@@ -24,7 +24,7 @@ public class OperationWithUserList {
 
     public void showUserInformation() throws SQLException {
         Statement statement = connection.createStatement();
-        String SQL_SHOW_ACCEPTANCE = "select * from \"user_list\" order by id";
+        String SQL_SHOW_ACCEPTANCE = "select * from user_list order by id";
         ResultSet result = statement.executeQuery(SQL_SHOW_ACCEPTANCE);
         while (result.next()) {
             System.out.println(result.getInt("id") + " " +result.getString("user_name") + " " +
@@ -33,7 +33,7 @@ public class OperationWithUserList {
         System.out.println();
     }
     public void changeUserInformation() throws SQLException {
-        String SQL = "update \"user_list\" set user_name = ?, user_password = ?," +
+        String SQL = "update user_list set user_name = ?, user_password = ?," +
                 "access_type = ? where id = ?;";
         PreparedStatement preparedStatement = connection.prepareStatement(SQL);
         System.out.println("Введите ID изменяемого пользователя: ");
@@ -52,7 +52,7 @@ public class OperationWithUserList {
         preparedStatement.executeUpdate();
     }
     public void deleteUser() throws SQLException {
-        String SQL = "delete from \"user_list\" where id = ?;";
+        String SQL = "delete from user_list where id = ?;";
         PreparedStatement preparedStatement = connection.prepareStatement(SQL);
         System.out.println("Введите ID пользователя для удаления: ");
         int id = scanner.nextInt();

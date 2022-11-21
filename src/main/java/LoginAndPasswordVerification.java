@@ -7,9 +7,9 @@ public class LoginAndPasswordVerification {
     Scanner scanner = new Scanner(System.in);
     private static String loginToCheck = null;
     private static String passwordToCheck = null;
-    private static final String SQL_LOGIN_VERIFICATION = "select user_name from \"user_list\" order by id";
-    private static final String SQL_ACCESS_VERIFICATION = "select access_type from \"user_list\" where user_name = ?";
-    private static final String SQL_PASSWORD_VERIFICATION = "select user_password from \"user_list\" where user_name = ?";
+    private static final String SQL_LOGIN_VERIFICATION = "select user_name from user_list order by id";
+    private static final String SQL_ACCESS_VERIFICATION = "select access_type from user_list where user_name = ?";
+    private static final String SQL_PASSWORD_VERIFICATION = "select user_password from user_list where user_name = ?";
     boolean accessLoginVerificationFlag = false;
     boolean accessPasswordVerificationFlag = false;
     int accessType = 0;

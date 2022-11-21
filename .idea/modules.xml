@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/com-itstep-aqa-project-scrap-kruglikov.iml" filepath="$PROJECT_DIR$/.idea/com-itstep-aqa-project-scrap-kruglikov.iml" />
+      <module fileurl="file://$PROJECT_DIR$/com-itstep-aqa-project-scrap-kruglikov.iml" filepath="$PROJECT_DIR$/com-itstep-aqa-project-scrap-kruglikov.iml" />
     </modules>
   </component>
 </project>

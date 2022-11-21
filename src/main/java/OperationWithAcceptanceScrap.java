@@ -8,7 +8,7 @@ public class OperationWithAcceptanceScrap {
 
     public void showListOfAcceptations() throws SQLException {
         Statement statement = connection.createStatement();
-        String SQL_SHOW_ACCEPTANCE = "select * from \"acceptanceScrap\" order by acceptance_id";
+        String SQL_SHOW_ACCEPTANCE = "select * from acceptanceScrap order by acceptance_id";
         ResultSet result = statement.executeQuery(SQL_SHOW_ACCEPTANCE);
         while (result.next()) {
             System.out.println(result.getInt("acceptance_id") + " " + result.getString("supplier") + " "
@@ -20,7 +20,7 @@ public class OperationWithAcceptanceScrap {
     }
 
     public void changeAcceptance() throws SQLException {
-        String SQL = "update \"acceptanceScrap\" set supplier = ?, gross_weight = ?," +
+        String SQL = "update acceptanceScrap set supplier = ?, gross_weight = ?," +
                 "container_weight = ?,net_weight = ?, price_per_kg = ?, total_payment = ?, " +
                 "acceptor =? ,acceptance_date = ? where acceptance_id = ?;";
         PreparedStatement preparedStatement = connection.prepareStatement(SQL);
@@ -56,7 +56,7 @@ public class OperationWithAcceptanceScrap {
 
 
     public void addAcceptance() throws SQLException {
-        String sql = "insert into \"acceptanceScrap\" (supplier, gross_weight," +
+        String sql = "insert into acceptanceScrap (supplier, gross_weight," +
                 "container_weight,net_weight, price_per_kg, total_payment, acceptor, acceptance_date) values (?,?,?,?,?,?,?,?);";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
         System.out.println("Введите поставщика: ");
@@ -85,7 +85,7 @@ public class OperationWithAcceptanceScrap {
         preparedStatement.executeUpdate();
     }
     public void deleteAcceptance() throws SQLException {
-        String SQL = "delete from \"acceptanceScrap\" where acceptance_id = ?;";
+        String SQL = "delete from acceptanceScrap where acceptance_id = ?;";
         PreparedStatement preparedStatement = connection.prepareStatement(SQL);
         System.out.println("Введите ID изменяемой приемки: ");
         int acceptanceID = scanner.nextInt();

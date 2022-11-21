@@ -1,9 +1,11 @@
 import java.sql.*;
 
 public class Main {
+    private static int countOfLoginInput = 5;
+    private static int countOfPasswordInput = 5;
     public static void main(String[] args) throws SQLException {
         LoginAndPasswordVerification verification = new LoginAndPasswordVerification();
-        int countOfLoginInput = 5;
+
         do {
             verification.loginVerification();
             if (!verification.accessLoginVerificationFlag) {
@@ -16,7 +18,7 @@ public class Main {
             System.out.println("Программа закрыта");
             System.exit(0);
         }
-        int countOfPasswordInput = 5;
+
 
         do {
             verification.passwordVerification();
