@@ -1,0 +1,37 @@
+CREATE TABLE IF NOT EXISTS public."acceptanceScrap"
+(
+    acceptance_id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    supplier character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    gross_weight double precision NOT NULL,
+    container_weight double precision,
+    net_weight double precision NOT NULL,
+    price_per_kg double precision NOT NULL,
+    total_payment double precision NOT NULL,
+    acceptor character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    acceptance_date character varying COLLATE pg_catalog."default",
+    CONSTRAINT "acceptanceScrap_pkey" PRIMARY KEY (acceptance_id)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public."acceptanceScrap"
+    OWNER to postgres;
+
+__________________
+CREATE TABLE IF NOT EXISTS public.user_list
+(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
+    user_name character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    user_password character varying(25) COLLATE pg_catalog."default",
+    access_type integer,
+    CONSTRAINT user_list_pkey PRIMARY KEY (id)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.user_list
+    OWNER to postgres;
