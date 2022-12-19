@@ -1,3 +1,7 @@
+package com.itstep.aqa.project.scrap.kruglikov.java.controller;
+
+import com.itstep.aqa.project.scrap.kruglikov.java.service.OperationWithAcceptanceScrap;
+
 import java.sql.*;
 import java.util.Scanner;
 

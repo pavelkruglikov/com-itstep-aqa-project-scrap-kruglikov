@@ -1,3 +1,7 @@
+package com.itstep.aqa.project.scrap.kruglikov.java.service;
+
+import com.itstep.aqa.project.scrap.kruglikov.java.dao.ConnectionToDB;
+
 import java.sql.*;
 import java.text.DecimalFormat;
 import java.util.Scanner;

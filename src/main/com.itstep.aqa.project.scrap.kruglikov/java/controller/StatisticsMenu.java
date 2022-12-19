@@ -1,3 +1,7 @@
+package com.itstep.aqa.project.scrap.kruglikov.java.controller;
+
+import com.itstep.aqa.project.scrap.kruglikov.java.service.StatisticOperation;
+
 import java.sql.SQLException;
 import java.util.Scanner;
 
